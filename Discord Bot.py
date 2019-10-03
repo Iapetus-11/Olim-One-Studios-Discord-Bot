@@ -10,11 +10,11 @@ from os import system
 
 #discord config
 client = discord.Client()
-discordToken = 'NTc1ODE3NzEzOTQ4Mjk1MTY4.XNNgSA.uM1DyjXrRvyTocdFEGsT8fqYlBM'
+discordToken = 'discord token'
 
 #Yandex.Translate config
 tr = Translater()
-tr.set_key('trnsl.1.1.20190519T001258Z.4378ae11d5fc7776.639b743d37945f8e49bec9662b132531f80779e1')
+tr.set_key('yandex translater key')
 
 #other stuffs
 userWelcomes = ["""Hey {0}, welcome to this server, we're glad to have you here! Please read the {1}.""", """Welcome, {0}, we're glad you joined! Please read the {1}.""",
