@@ -14,7 +14,7 @@ discordToken = 'discord token'
 
 #Yandex.Translate config
 tr = Translater()
-tr.set_key('yandex translater key')
+tr.set_key('translater key')
 
 #other stuffs
 userWelcomes = ["""Hey {0}, welcome to this server, we're glad to have you here! Please read the {1}.""", """Welcome, {0}, we're glad you joined! Please read the {1}.""",
@@ -23,7 +23,12 @@ userGoodbyes = ['Awwwww, {0} left us', '{0} did not even say goodbye ;(', '{0} j
                 'yeet yeet, {0} bounced back into the street.', 'I hope {0} has good luck on the outside...']
 xenonMC1 = """Hey {0}, welcome to **XenonMC**! To access the server, please take a look at the {1} and fill it out in {2}. Then read through {3}. A moderator or the owner will look over your application soon after!"""
 xenonMC2 = """Goodbye, **{0}**"""
+playing = ["flirting with SlavBot", "hack the CIA", "Minecraft", "fortnite bad minecraft good", "Human Simulator 2019", "Big Chungus Simulator 2019", "Yandex.Translater",
+              "flirting with ToddBot", "Pokecord", "Pokemon Red", "Pokemon Silver", "with a *****", "Winrar's 40 day trial - the simulation", "on a Wii", "Meme Assassin",
+              "anything other than fortnite", "Minecraft Bedrock Edition", "Minecraft Java Edition", "Wii", "Thanos Simulator - Snapped Edition", "Tetris", "annoy the humans"]
 system("title Discord Bot")
+randomness = [True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,
+              False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
 
 #Iapetus11, Mckinlayyyy, Jake, LikeableCoconut, Raaaaoof SG, Rastley
 admins = [536986067140608041, 480513935632498710, 338674447353380864, 447352787676692482, 454620186570653696, 593594606583808000]
@@ -35,7 +40,7 @@ async def on_ready():
         print(client.user.name)
         print(client.user.id)
         print("Successfully connected to Discord!")
-        await client.change_presence(activity=discord.Game(name='Flirting with SlavBot'))
+        await client.change_presence(activity=discord.Game(name=randomChoice(playing)))
         
     except Exception as e:
         #print le error
@@ -43,6 +48,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if randomChoice(randomness):
+        await client.change_presence(activity=discord.Game(name=randomChoice(playing)))
+        
     print(str(message.author) + " : " + str(message.clean_content)) #print message author and message
     
     #check to see if user is not self.
