@@ -10,11 +10,11 @@ from os import system
 
 #discord config
 client = discord.Client()
-discordToken = 'discord token'
+discordToken = 'Discord Token'
 
 #Yandex.Translate config
 tr = Translater()
-tr.set_key('translater key')
+tr.set_key('Yandex.Translater key')
 
 #other stuffs
 userWelcomes = ["""Hey {0}, welcome to this server, we're glad to have you here! Please read the {1}.""", """Welcome, {0}, we're glad you joined! Please read the {1}.""",
@@ -23,15 +23,17 @@ userGoodbyes = ['Awwwww, {0} left us', '{0} did not even say goodbye ;(', '{0} j
                 'yeet yeet, {0} bounced back into the street.', 'I hope {0} has good luck on the outside...']
 xenonMC1 = """Hey {0}, welcome to **XenonMC**! To access the server, please take a look at the {1} and fill it out in {2}. Then read through {3}. A moderator or the owner will look over your application soon after!"""
 xenonMC2 = """Goodbye, **{0}**"""
-playing = ["flirting with SlavBot", "hack the CIA", "Minecraft", "fortnite bad minecraft good", "Human Simulator 2019", "Big Chungus Simulator 2019", "Yandex.Translater",
+playing = ["flirting with SlavBot", "CIA Hacking - the game", "Minecraft", "fortnite bad minecraft good", "Human Simulator 2019", "Big Chungus Simulator 2018", "Yandex.Translater",
               "flirting with ToddBot", "Pokecord", "Pokemon Red", "Pokemon Silver", "with a *****", "Winrar's 40 day trial - the simulation", "on a Wii", "Meme Assassin",
-              "anything other than fortnite", "Minecraft Bedrock Edition", "Minecraft Java Edition", "Wii", "Thanos Simulator - Snapped Edition", "Tetris", "annoy the humans"]
-system("title Discord Bot")
+              "anything other than fortnite", "Minecraft Bedrock Edition", "Minecraft Java Edition", "Wii", "Thanos Simulator - Snapped Edition", "Tetris", "annoy the puny humans"]
 randomness = [True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,
+              False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,
               False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
 
-#Iapetus11, Mckinlayyyy, Jake, LikeableCoconut, Raaaaoof SG, Rastley
-admins = [536986067140608041, 480513935632498710, 338674447353380864, 447352787676692482, 454620186570653696, 593594606583808000]
+system("title Discord Bot")
+
+#Iapetus11, Mckinlayyyy, Jake, LikeableCoconut, Raaaaoof SG, Rastley, Kayne Rogers
+admins = [536986067140608041, 480513935632498710, 338674447353380864, 447352787676692482, 454620186570653696, 593594606583808000, 617882209956659259]
 
 @client.event
 async def on_ready():
@@ -121,10 +123,14 @@ async def on_message(message):
 
         #purge messages command
         if message.content[:7] == "!purge ":
-            for admin in admins:
-                if message.author.id == admin:
-                    await message.delete()
-                    await message.channel.purge(limit=int(message.content.replace('!purge ', '')))
+            try:
+                int(message.content[7:])
+                for admin in admins:
+                    if message.author.id == admin:
+                        await message.delete()
+                        await message.channel.purge(limit=int(message.content.replace('!purge ', '')))
+            except Exception:
+                pass
 
 @client.event
 async def on_member_join(member):
