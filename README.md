@@ -9,3 +9,5 @@ A bot made in Python 3.7 for my Discord servers.
 * Minecraft server status checking
 * A custom message clearing command
 * Custom welcome messages
+* Custom "playing" messages
+* Command to change "playing" message
