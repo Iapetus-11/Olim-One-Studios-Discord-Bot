@@ -1,4 +1,4 @@
-# Olim-One-Studios-and-Xenon-MC-discord-bot
+# POБOT Discord Bot
 A bot made in Python 3.7 for my Discord servers.
 
 ## Features:
