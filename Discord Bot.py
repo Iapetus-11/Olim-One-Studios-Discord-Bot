@@ -23,9 +23,9 @@ userGoodbyes = ['Awwwww, {0} left us', '{0} did not even say goodbye ;(', '{0} j
                 'yeet yeet, {0} bounced back into the street.', 'I hope {0} has good luck on the outside...']
 xenonMC1 = """Hey {0}, welcome to **XenonMC**! To access the server, please take a look at the {1} and fill it out in {2}. Then read through {3}. A moderator or the owner will look over your application soon after!"""
 xenonMC2 = """Goodbye, **{0}**"""
-playing = ["flirting with SlavBot", "CIA Hacking - the game", "Minecraft", "fortnite bad minecraft good", "Human Simulator 2019", "Big Chungus Simulator 2018", "Yandex.Translater",
-              "flirting with ToddBot", "Pokecord", "Pokemon Red", "Pokemon Silver", "with a *****", "Winrar's 40 day trial - the simulation", "on a Wii", "Meme Assassin",
-              "anything other than fortnite", "Minecraft Bedrock Edition", "Minecraft Java Edition", "Wii", "Thanos Simulator - Snapped Edition", "Tetris", "annoy the puny humans"]
+playing = ["flirting with SlavBot", "CIA Hacking", "Minecraft", "fortnite bad minecraft good", "Human Simulator 2019", "Big Chungus Simulator 2018", "Yandex.Translater",
+              "flirting with ToddBot", "Pokecord", "Pokemon Red", "Pokemon Silver", "with a *****", "Winrar's 40 day trial - the epic simulation", "on a Wii", "Meme Assassin",
+              "anything other than fortnite", "Minecraft Bedrock Edition", "Minecraft Java Edition", "Wii", "Thanos Simulator - Snapped Edition", "Tetris", "Coding badly"]
 randomness = [True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,
               False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False,
               False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
@@ -60,14 +60,13 @@ async def on_message(message):
         #Help command
         if message.content[:5] == "!help":
             helpMessage = """__Bot Commands:__
-    **!help** *to display this help message and view the bot commands.*
-    **!google** ***search*** *to search google.*
-    **!youtube** ***search*** *to search youtube.*
-    **!mcstatus** *to check the official Minecraft server status.*
-    **!arrr** ***text*** *to speak like a pirate.*
-    **!translate** ***from*** **to** ***text*** *to translate between languages.*
-    **!langs** *to list the languages available for translation.*
-    **!purge** ***number of messages*** *deletes n number of messages in the channel it's summoned in. (admin only command)*
+ **!help** *to display this help message and view the bot commands.*
+ **!google** ***search*** *to search google.*
+ **!youtube** ***search*** *to search youtube.*
+ **!mcstatus** *to check the official Minecraft server status.*
+ **!arrr** ***text*** *to speak like a pirate.*
+ **!translate** ***from*** **to** ***text*** *to translate between languages.*
+ **!langs** *to list the languages available for translation.*
     """
             await message.channel.send(helpMessage)
         
@@ -75,7 +74,7 @@ async def on_message(message):
         if message.content.startswith("!google "):
             await discord.User.trigger_typing(message.channel)
             query = message.content.replace('!google ', '')
-            for result in search(query, tld="co.in", num=1, stop=1, pause=0.5):
+            for result in search(query, tld="co.in", num=1, stop=1, pause=0.1):
                 await message.channel.send(result)
         
         #Youtube search command
@@ -114,12 +113,23 @@ async def on_message(message):
             to_lang = "{0} ".format(to_lang)
             from_lang = "{0} ".format(from_lang)
             if not message.content[16:] == '':
-                tr.set_text(message.content[16:])
-                await message.channel.send(tr.translate())
+                if message.content[16:] is not "":
+                    tr.set_text(message.content[16:])
+                    await message.channel.send(tr.translate())
+                elif message.content[16:] is "":
+                    await message.channel.send("No text was provided for translation.")
         
         #List languages that can be translated between
         if message.content.startswith("!langs"):
             await message.channel.send("http://172.10.17.177/images/langs.png")
+
+        #admin command help command
+        if message.content.startswith("!admincmds"):
+            helpMessage = """__Admin Bot Commands:__
+**!purge** ***number of messages*** *deletes n number of messages in the channel it's summoned in.*
+**!playing** ***text for bot to display*** *sets the "playing" activity of the bot.*
+"""
+            await message.channel.send(helpMessage)
 
         #purge messages command
         if message.content.startswith("!purge "):
@@ -131,14 +141,19 @@ async def on_message(message):
                         await message.channel.purge(limit=int(message.content.replace('!purge ', '')))
             except Exception:
                 await message.channel.send("That is not a valid number")
-                pass
+
+        #set bot "playing" action command
+        if message.content.startswith("!playing "):
+            for admin in admins:
+                if message.author.id == admin:
+                    await client.change_presence(activity=discord.Game(name=message.content.replace("!playing ", "")))
 
 @client.event
 async def on_member_join(member):
     #check to see if member has joined Olim One Studios guild.
-    if member.guild == client.get_guild(537377952581812224):
-        channel = client.get_channel(537377952581812226)
-        await channel.send(randomChoice(userWelcomes).format(member.mention, client.get_channel(538844326692651028).mention))
+    #if member.guild == client.get_guild(537377952581812224):
+    #    channel = client.get_channel(537377952581812226)
+    #    await channel.send(randomChoice(userWelcomes).format(member.mention, client.get_channel(538844326692651028).mention))
 
     #check to see if member has joined XenonMC guild.
     if member.guild == client.get_guild(593954944059572235):
@@ -148,9 +163,9 @@ async def on_member_join(member):
 @client.event
 async def on_member_remove(member):
     #check to see if member has joined Olim One Studios guild.
-    if member.guild == client.get_guild(537377952581812224):
-        channel = client.get_channel(537377952581812226)
-        await channel.send(randomChoice(userGoodbyes).format(member.mention))
+    #if member.guild == client.get_guild(537377952581812224):
+    #    channel = client.get_channel(537377952581812226)
+    #    await channel.send(randomChoice(userGoodbyes).format(member.mention))
 
     #check to see if member has joined XenonMC guild.
     if member.guild == client.get_guild(593954944059572235):
