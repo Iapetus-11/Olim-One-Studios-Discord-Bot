@@ -14,7 +14,7 @@ discordToken = 'Discord Token'
 
 #Yandex.Translate config
 tr = Translater()
-tr.set_key('Yandex.Translater key')
+tr.set_key('Yandex.Translater Key')
 
 #other stuffs
 userWelcomes = ["""Hey {0}, welcome to this server, we're glad to have you here! Please read the {1}.""", """Welcome, {0}, we're glad you joined! Please read the {1}.""",
@@ -72,21 +72,21 @@ async def on_message(message):
             await message.channel.send(helpMessage)
         
         #Google search command
-        if message.content[:8] == "!google ":
+        if message.content.startswith("!google "):
             await discord.User.trigger_typing(message.channel)
             query = message.content.replace('!google ', '')
             for result in search(query, tld="co.in", num=1, stop=1, pause=0.5):
                 await message.channel.send(result)
         
         #Youtube search command
-        if message.content[:9] == "!youtube ":
+        if message.content.startswith("!youtube "):
             await discord.User.trigger_typing(message.channel)
             query = message.content.replace('!youtube ', '')
             for result in search(query, tld="co.in", domains=['youtube.com'], num=1, stop=1, pause=0.5):
                 await message.channel.send(result)
 
         #mcstatus Olim One Studios server status command    
-        if message.content[:9] == "!mcstatus":
+        if message.content.startswith("!mcstatus"):
             await discord.User.trigger_typing(message.channel)
             if message.guild == client.get_guild(537377952581812224): #if guild is Olim One Studios.
                 await message.channel.send("This feature is not available for this server.")
@@ -99,13 +99,13 @@ async def on_message(message):
                     await message.channel.send("Xenon JE is either offline or unavailable at the moment.")
 
         #English to pirate speak command
-        if message.content[:6] == "!arrr ":
+        if message.content.startswith("!arrr "):
             english = message.content.replace('!arrr ', '')
             pirateSpeak = arrr.translate(english)
             await message.channel.send(pirateSpeak)
 
         #Yandex Translate command
-        if message.content[:11] == "!translate ":
+        if message.content.startswith("!translate "):
             await discord.User.trigger_typing(message.channel)
             from_lang = message.content[11:13]
             to_lang = message.content[14:16]
@@ -118,11 +118,11 @@ async def on_message(message):
                 await message.channel.send(tr.translate())
         
         #List languages that can be translated between
-        if message.content[:6] == "!langs":
+        if message.content.startswith("!langs"):
             await message.channel.send("http://172.10.17.177/images/langs.png")
 
         #purge messages command
-        if message.content[:7] == "!purge ":
+        if message.content.startswith("!purge "):
             try:
                 int(message.content[7:])
                 for admin in admins:
@@ -130,6 +130,7 @@ async def on_message(message):
                         await message.delete()
                         await message.channel.purge(limit=int(message.content.replace('!purge ', '')))
             except Exception:
+                await message.channel.send("That is not a valid number")
                 pass
 
 @client.event
