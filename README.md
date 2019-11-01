@@ -1,5 +1,5 @@
 # POБOT Discord Bot
-A bot made in Python 3.7 for my Discord servers. Includes a variety of features. Originally a project for me to get more into the Python programming language.
+A bot made in Python 3.7 using cogs for my Discord servers. Includes a variety of features. Originally a project for me to get more into the Python programming language.
 
 ## Features:
 * Google search
