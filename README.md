@@ -6,7 +6,7 @@ A bot made in Python 3.7 using cogs for my Discord servers. Includes a variety o
 * Translation via Yandex.Translater
 * Youtube search
 * Translation to pirate speak
-* Minecraft server status checking
+* Minecraft server status checking (My server only)
 * A custom message clearing command
 * Custom welcome messages
 * Custom "playing" messages
