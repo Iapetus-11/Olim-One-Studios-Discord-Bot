@@ -3,7 +3,7 @@ A bot made in Python 3.7 using cogs for my Discord servers. Includes a variety o
 
 ## Features:
 * Google search
-* Translation via Yandex.Translater
+* Translation via Yandex.Translater (Bootleg Russian google translate)
 * Youtube search
 * Translation to pirate speak
 * Minecraft server status checking (My server only)
