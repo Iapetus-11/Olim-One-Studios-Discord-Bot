@@ -17,3 +17,6 @@ A bot made in Python 3.7 using cogs for my Discord servers. Includes a variety o
 * Can check latency between the bot and Discord
 * Can ping Minecraft Java Edition servers
 * Can convert English to Engrish
+* Can convert English to Minecraft villager sounds
+* Can convert English to the Minecraft enchanting table language (SGA)
+* Can facilitate a battle between two users in chat
