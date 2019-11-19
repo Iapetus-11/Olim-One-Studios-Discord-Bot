@@ -46,5 +46,11 @@ class Owner(commands.Cog):
         for guild in self.bot.guilds:
             await ctx.send(guild.name+" "+str(guild.id))
 
+    @commands.command(name="dms")
+    @commands.is_owner()
+    async def dms(self, ctx):
+        for dm in self.bot.private_channels:
+            await ctx.send(str(dm.id))
+
 def setup(bot):
     bot.add_cog(Owner(bot))

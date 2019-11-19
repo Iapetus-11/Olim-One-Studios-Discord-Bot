@@ -20,7 +20,7 @@ class Messages(commands.Cog):
         except Exception:
             pass
         msg_count += 1
-        if msg_count%50 == 0:
+        if msg_count%100 == 0:
             playing = open("playing.txt", "r").readlines()
             await self.bot.change_presence(activity=discord.Game(name=choice(playing)))
 

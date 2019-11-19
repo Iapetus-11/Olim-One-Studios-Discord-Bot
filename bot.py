@@ -5,8 +5,8 @@ from os import system
 #set window title
 system("title Discord Bot")
 
-bot = commands.Bot(command_prefix='!', help_command=None)
-cogs = ["cmds", "admincmds", "messages", "events", "owner"]
+bot = commands.Bot(command_prefix=".", help_command=None)
+cogs = ["cmds", "admincmds", "messages", "events", "owner"] #cogs to load
 
 #load cogs in cogs list
 for cog in cogs:
