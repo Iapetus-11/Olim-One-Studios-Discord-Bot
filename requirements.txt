@@ -1,4 +1,4 @@
-discord.py==1.01
+discord.py==1.25
 arrr==1.0.0b3
 mcstatus==2.2.1
 yandex-translater==6.0
